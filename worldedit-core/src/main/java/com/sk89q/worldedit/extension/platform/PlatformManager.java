@@ -407,7 +407,7 @@ public class PlatformManager {
                     if (pos != null) {
                         player.findFreePosition(pos);
                     } else {
-                        player.printError("No block in sight (or too far)!");
+                        player.printError("Невозможно достать до блока!");
                     }
 
                     event.setCancelled(true);
@@ -439,7 +439,7 @@ public class PlatformManager {
                     }
 
                     if (!player.passThroughForwardWall(40)) {
-                        player.printError("Nothing to pass through!");
+                        player.printError("Некуда встать!");
                     }
 
                     event.setCancelled(true);
