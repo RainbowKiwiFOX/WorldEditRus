@@ -77,7 +77,7 @@ public class SelectionCommands {
     @Command(
         aliases = { "/pos1" },
         usage = "[coordinates]",
-        desc = "Set position 1",
+        desc = "Установить первую точку",
         min = 0,
         max = 1
     )
@@ -92,7 +92,7 @@ public class SelectionCommands {
                 String[] coords = args.getString(0).split(",");
                 pos = new Vector(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), Integer.parseInt(coords[2]));
             } else {
-                player.printError("Invalid coordinates " + args.getString(0));
+                player.printError("Недопустимые координаты " + args.getString(0));
                 return;
             }
         } else {
@@ -100,7 +100,7 @@ public class SelectionCommands {
         }
 
         if (!session.getRegionSelector(player.getWorld()).selectPrimary(pos, ActorSelectorLimits.forActor(player))) {
-            player.printError("Position already set.");
+            player.printError("Точка уже установлена.");
             return;
         }
 
@@ -111,7 +111,7 @@ public class SelectionCommands {
     @Command(
         aliases = { "/pos2" },
         usage = "[coordinates]",
-        desc = "Set position 2",
+        desc = "Установить вторую точку",
         min = 0,
         max = 1
     )
@@ -127,7 +127,7 @@ public class SelectionCommands {
                         Integer.parseInt(coords[1]),
                         Integer.parseInt(coords[2]));
             } else {
-                player.printError("Invalid coordinates " + args.getString(0));
+                player.printError("Недопустимые координаты " + args.getString(0));
                 return;
             }
         } else {
@@ -135,7 +135,7 @@ public class SelectionCommands {
         }
 
         if (!session.getRegionSelector(player.getWorld()).selectSecondary(pos, ActorSelectorLimits.forActor(player))) {
-            player.printError("Position already set.");
+            player.printError("Точка установлена.");
             return;
         }
 
@@ -146,7 +146,7 @@ public class SelectionCommands {
     @Command(
         aliases = { "/hpos1" },
         usage = "",
-        desc = "Set position 1 to targeted block",
+        desc = "Устанвить первую точку туда, куда вы смотрите",
         min = 0,
         max = 0
     )
@@ -157,7 +157,7 @@ public class SelectionCommands {
 
         if (pos != null) {
             if (!session.getRegionSelector(player.getWorld()).selectPrimary(pos, ActorSelectorLimits.forActor(player))) {
-                player.printError("Position already set.");
+                player.printError("Точка уже установлена.");
                 return;
             }
 
@@ -171,7 +171,7 @@ public class SelectionCommands {
     @Command(
         aliases = { "/hpos2" },
         usage = "",
-        desc = "Set position 2 to targeted block",
+        desc = "Установить вторую точку туда, куда вы смотрите",
         min = 0,
         max = 0
     )
@@ -182,7 +182,7 @@ public class SelectionCommands {
 
         if (pos != null) {
             if (!session.getRegionSelector(player.getWorld()).selectSecondary(pos, ActorSelectorLimits.forActor(player))) {
-                player.printError("Position already set.");
+                player.printError("Точка уже установлена.");
                 return;
             }
 
@@ -268,7 +268,7 @@ public class SelectionCommands {
     @Command(
         aliases = { "/wand" },
         usage = "",
-        desc = "Get the wand object",
+        desc = "Получить топор для привата",
         min = 0,
         max = 0
     )
@@ -276,7 +276,7 @@ public class SelectionCommands {
     public void wand(Player player, LocalSession session, EditSession editSession, CommandContext args) throws WorldEditException {
 
         player.giveItem(we.getConfiguration().wandItem, 1);
-        player.print("Left click: select pos #1; Right click: select pos #2");
+        player.print("Ударьте ЛКМ для установки первой точки и ПКМ для второй.");
     }
 
     @Command(
@@ -322,8 +322,8 @@ public class SelectionCommands {
                 session.getRegionSelector(player.getWorld()).learnChanges();
                 int newSize = region.getArea();
                 session.getRegionSelector(player.getWorld()).explainRegionAdjust(player, session);
-                player.print("Region expanded " + (newSize - oldSize)
-                        + " blocks [top-to-bottom].");
+                player.print("Регион расширен на " + (newSize - oldSize)
+                        + " блоков(а) [от бедрока до неба].");
             } catch (RegionOperationException e) {
                 player.printError(e.getMessage());
             }
@@ -390,7 +390,7 @@ public class SelectionCommands {
         
         session.getRegionSelector(player.getWorld()).explainRegionAdjust(player, session);
 
-        player.print("Region expanded " + (newSize - oldSize) + " blocks.");
+        player.print("Регион расширен на " + (newSize - oldSize) + " блоков(а).");
     }
 
     @Command(
