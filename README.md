@@ -1,22 +1,21 @@
 ![WorldEdit](http://static.sk89q.com/readme/worldedit.png)
 =========
 
-WorldEdit is an easy-to-use in-game world editor for Minecraft, supporting both
-single player and multiplayer, that lets you:
+WorldEdit - лёгкий, вниутриигровой редактор мира Minecraft, поддерживающий одиночную и сетевую игру:
 
-* Change thousands of blocks in an area at once by selecting regions.
-* Use over 100 functions to modify the world or remove problems.
-* Remove large chunks of land as you wish.
+* Изменение тысячи блоков одновременно в выделенном регионе.
+* Более 100 функций для редактирования мира.
+* Удаление нестолько больших кусков земли, на сколько вы желаете.
 * Sculpt the world and build mountains with brushes.
-* Fix annoyances such as broken water, missing snow, raging fires, and more.
+* Исправление воды, отсутствии снега, пожары и т.д..
 
-WorldEdit is open source and is available under the GNU Lesser General Public
+WorldEdit проект с открытым исходным кодом и распространяется по GNU Lesser General Public
 License v3.
 
-Compiling
+Компиляция
 ---------
 
-See [COMPILING.md](COMPILING.md) for a guide on compiling WorldEdit.
+Загляните в  [COMPILING.md](COMPILING.md) для получения информации о компиляции WorldEdit.
 
 Contributing
 ------------
@@ -26,11 +25,11 @@ Submissions must be licensed under the GNU Lesser General Public License v3.
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for important guidelines to follow.
 
-Links
+Ссылки
 -----
 
-* [Visit our website](http://www.enginehub.org/)
-* [IRC channel](http://skq.me/irc/irc.esper.net/sk89q/) (#sk89q on irc.esper.net)
-* [Issue tracker](http://youtrack.sk89q.com/issues/WORLDEDIT)
-* [Continuous integration](http://builds.enginehub.org) [![Build Status](https://travis-ci.org/sk89q/WorldEdit.svg?branch=master)](https://travis-ci.org/sk89q/WorldEdit)
-* [End-user documentation](http://wiki.sk89q.com/wiki/WorldEdit)
+* [Сайт разработчика](http://www.enginehub.org/)
+* [Канал IRC](http://skq.me/irc/irc.esper.net/sk89q/) (#sk89q on irc.esper.net)
+* [Баг-трекер](http://youtrack.sk89q.com/issues/WORLDEDIT)
+* [Сервер непрерывной интеграции](http://builds.enginehub.org) [![Build Status](https://travis-ci.org/sk89q/WorldEdit.svg?branch=master)](https://travis-ci.org/sk89q/WorldEdit)
+* [Документация](http://wiki.sk89q.com/wiki/WorldEdit)
