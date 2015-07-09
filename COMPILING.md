@@ -1,35 +1,38 @@
-Compiling
+Компиляция
 =========
 
-You can compile WorldEdit as long as you have the [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html) for Java 7 or newer. You only need one version of JDK installed.
+Вы можете самостоятельно скомпилировать WorldEdit, если вы имеете [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html) for Java 7 or newer. You only need one version of JDK installed.
 
-The build process uses Gradle, which you do *not* need to download. WorldEdit is a multi-module project with three modules:
+Для этого используйте Gradle, который НЕ нуждается в скачивании. WorldEdit состоит из трёх модулей:
 
-* `worldedit-core` contains WorldEdit
-* `worldedit-bukkit` is the Bukkit plugin
-* `worldedit-forge` is the Forge mod
+* `worldedit-core` основа WorldEdit
+* `worldedit-bukkit` плагин Bukkit
+* `worldedit-forge` мод Forge
 
-## To compile...
+## Сама компилияция...
 
-### On Windows
+### В Windows
 
-1. Shift + right click the folder with WorldEdit's files and click "Open command prompt".
+1. Загрузите файлы WorldEdit и распакуйте их.
+1. Нажмите Shift + ПКМ по папке с WorldEdit и нажмите "Открыть окно комманд".
 2. `gradlew clean setupDevWorkspace`
 3. `gradlew build`
 
-### On Linux, BSD, or Mac OS X
+### В UNIX-системах.
 
-1. In your terminal, navigate to the folder with WorldEdit's files (`cd /folder/of/worldedit/files`)
+1. Скопируйте файлы WorldEdit к себе с помощью Git (как настоящий мужик) и перейдите в папку с ними: 
+`git clone https://github.com/RainbowKiwiFOX/WorldEditRus.git`
+`cd WorldEditRus`
 2. `./gradlew clean setupDevWorkspace`
 3. `./gradlew build`
 
-## Then you will find...
+## Расположение файлов...
 
-You will find:
+Файлы находятся:
 
-* The core WorldEdit API in **worldedit-core/build/libs**
-* WorldEdit for Bukkit in **worldedit-bukkit/build/libs**
-* WorldEdit for Forge in **worldedit-forge/build/libs**
+* Ядро WorldEdit API в **worldedit-core/build/libs**
+* WorldEdit для Bukkit в **worldedit-bukkit/build/libs**
+* WorldEdit для Forge в **worldedit-forge/build/libs**
 
 If you want to use WorldEdit, use the `-shadow` version.
 
