@@ -282,7 +282,7 @@ public class SelectionCommands {
     @Command(
         aliases = { "toggleeditwand" },
         usage = "",
-        desc = "Toggle functionality of the edit wand",
+        desc = "Изменить режим деревянного топора",
         min = 0,
         max = 0
     )
@@ -292,16 +292,16 @@ public class SelectionCommands {
         session.setToolControl(!session.isToolControlEnabled());
 
         if (session.isToolControlEnabled()) {
-            player.print("Edit wand enabled.");
+            player.print("Топор выделения включен.");
         } else {
-            player.print("Edit wand disabled.");
+            player.print("Топор выделения выключен.");
         }
     }
 
     @Command(
         aliases = { "/expand" },
         usage = "<amount> [reverse-amount] <direction>",
-        desc = "Expand the selection area",
+        desc = "Расширить размер выделения",
         min = 1,
         max = 3
     )
