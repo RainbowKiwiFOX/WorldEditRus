@@ -47,7 +47,7 @@ public class HistoryCommands {
     @Command(
         aliases = { "/undo", "undo" },
         usage = "[times] [player]",
-        desc = "РћС‚РјРµРЅРёС‚СЊ РїСЂРµРґС‹РґСѓС‰РµРµ РґРµР№СЃС‚РІРёРµ",
+        desc = "Отменить предыдущее действие",
         min = 0,
         max = 2
     )
@@ -62,16 +62,16 @@ public class HistoryCommands {
                 player.checkPermission("worldedit.history.undo.other");
                 LocalSession sess = worldEdit.getSession(args.getString(1));
                 if (sess == null) {
-                    player.printError("РќРµРІРѕР·РјРѕР¶РЅРѕ РЅР°Р№С‚Рё СЃРµСЃСЃРёСЋ " + args.getString(1));
+                    player.printError("Невозможно найти сессию " + args.getString(1));
                     break;
                 }
                 undone = sess.undo(session.getBlockBag(player), player);
             }
             if (undone != null) {
-                player.print("РћС‚РјРµРЅР° РїСЂРѕРёР·РѕС€Р»Р° СѓСЃРїРµС€РЅРѕ!");
+                player.print("Отмена произошла успешно!");
                 worldEdit.flushBlockBag(player, undone);
             } else {
-                player.printError("РќРµС‚ РґРµР№СЃС‚РІРёР№ РґР»СЏ РѕС‚РјРµРЅС‹.");
+                player.printError("Нет действий для отмены.");
                 break;
             }
         }
@@ -80,7 +80,7 @@ public class HistoryCommands {
     @Command(
         aliases = { "/redo", "redo" },
         usage = "[times] [player]",
-        desc = "Р’РѕР·РІСЂР°С‚РёС‚СЊ РѕС‚РјРµРЅСѓ РґРµР№СЃС‚РІРёСЏ",
+        desc = "Возвратить отмену действия",
         min = 0,
         max = 2
     )
@@ -97,16 +97,16 @@ public class HistoryCommands {
                 player.checkPermission("worldedit.history.redo.other");
                 LocalSession sess = worldEdit.getSession(args.getString(1));
                 if (sess == null) {
-                    player.printError("РќРµРІРѕР·РјРѕР¶РЅРѕ РЅР°Р№С‚Рё СЃРµСЃСЃРёСЋ " + args.getString(1));
+                    player.printError("Невозможно найти сессию " + args.getString(1));
                     break;
                 }
                 redone = sess.redo(session.getBlockBag(player), player);
             }
             if (redone != null) {
-                player.print("РћС‚РјРµРЅР° СѓСЃРїРµС€РЅРѕ РІРѕР·РІСЂР°С‰РµРЅР°!");
+                player.print("Отмена успешно возвращена!");
                 worldEdit.flushBlockBag(player, redone);
             } else {
-                player.printError("РќРµС‚ РѕС‚РјРµРЅ РґР»СЏ РѕС‚РјРµРЅС‹.");
+                player.printError("Нет отмен для отмены.");
             }
         }
     }
@@ -114,14 +114,14 @@ public class HistoryCommands {
     @Command(
         aliases = { "/clearhistory", "clearhistory" },
         usage = "",
-        desc = "РћС‡РёСЃС‚РёС‚СЊ РёСЃС‚РѕСЂРёСЋ РґРµР№СЃС‚РІРёР№",
+        desc = "Очистить историю действий",
         min = 0,
         max = 0
     )
     @CommandPermissions("worldedit.history.clear")
     public void clearHistory(Player player, LocalSession session, EditSession editSession) throws WorldEditException {
         session.clearHistory();
-        player.print("РћС‡РёС‰РµРЅРѕ!");
+        player.print("История очищена!");
     }
 
 }

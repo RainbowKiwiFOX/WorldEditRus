@@ -407,7 +407,7 @@ public class PlatformManager {
                     if (pos != null) {
                         player.findFreePosition(pos);
                     } else {
-                        player.printError("РќРµРІРѕР·РјРѕР¶РЅРѕ РґРѕСЃС‚Р°С‚СЊ РґРѕ Р±Р»РѕРєР°!");
+                        player.printError("Невозможно достать до блока!");
                     }
 
                     event.setCancelled(true);
@@ -439,7 +439,7 @@ public class PlatformManager {
                     }
 
                     if (!player.passThroughForwardWall(40)) {
-                        player.printError("РќРµРєСѓРґР° РІСЃС‚Р°С‚СЊ!");
+                        player.printError("Некуда встать!");
                     }
 
                     event.setCancelled(true);
