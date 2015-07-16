@@ -128,7 +128,7 @@ class ParametricCallable implements CommandCallable {
 
                 // Don't know how to parse for this type of value
                 if (parameter.getBinding() == null) {
-                    throw new ParametricException("Don't know how to handle the parameter type '" + type + "' in\n" + method.toGenericString());
+                    throw new ParametricException("Не знаю, как обработать параметр типа '" + type + "' in\n" + method.toGenericString());
                 }
             }
             
@@ -247,14 +247,14 @@ class ParametricCallable implements CommandCallable {
                 handler.postInvoke(handler, method, parameters, args, context);
             }
         } catch (MissingParameterException e) {
-            throw new InvalidUsageException("Too few parameters!", this);
+            throw new InvalidUsageException("Слишком мало параметров!", this);
         } catch (UnconsumedParameterException e) {
-            throw new InvalidUsageException("Too many parameters! Unused parameters: " + e.getUnconsumed(), this);
+            throw new InvalidUsageException("Слишком много параметров! Лишние параметры: " + e.getUnconsumed(), this);
         } catch (ParameterException e) {
             assert parameter != null;
             String name = parameter.getName();
 
-            throw new InvalidUsageException("For parameter '" + name + "': " + e.getMessage(), this);
+            throw new InvalidUsageException("Параметр '" + name + "': " + e.getMessage(), this);
         } catch (InvocationTargetException e) {
             for (ExceptionConverter converter : builder.getExceptionConverters()) {
                 converter.convert(e.getCause());

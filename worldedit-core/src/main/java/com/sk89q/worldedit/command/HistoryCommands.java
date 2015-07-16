@@ -106,7 +106,7 @@ public class HistoryCommands {
                 player.print("Отмена успешно возвращена!");
                 worldEdit.flushBlockBag(player, redone);
             } else {
-                player.printError("Нет отмен для отмены.");
+                player.printError("Нет отмен для возврата.");
             }
         }
     }
