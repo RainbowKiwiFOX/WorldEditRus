@@ -53,7 +53,7 @@ public class ToolCommands {
     @Command(
         aliases = { "info" },
         usage = "",
-        desc = "Block information tool",
+        desc = "Инструмент информации о блоке",
         min = 0,
         max = 0
     )
@@ -61,14 +61,14 @@ public class ToolCommands {
     public void info(Player player, LocalSession session, EditSession editSession, CommandContext args) throws WorldEditException {
 
         session.setTool(player.getItemInHand(), new QueryTool());
-        player.print("Info tool bound to "
+        player.print("Информационный инструмент привязан к "
                 + ItemType.toHeldName(player.getItemInHand()) + ".");
     }
 
     @Command(
         aliases = { "tree" },
-        usage = "[type]",
-        desc = "Tree generator tool",
+        usage = "[тип дерева]",
+        desc = "Инструмент генерации деревьев",
         min = 0,
         max = 1
     )
@@ -81,12 +81,12 @@ public class ToolCommands {
                 : TreeGenerator.TreeType.TREE;
 
         if (type == null) {
-            player.printError("Tree type '" + args.getString(0) + "' is unknown.");
+            player.printError("Незвестный тип дерева: '" + args.getString(0));
             return;
         }
 
         session.setTool(player.getItemInHand(), new TreePlanter(new TreeGenerator(type)));
-        player.print("Tree tool bound to "
+        player.print("Инструмент генерации деревьев привязан к "
                 + ItemType.toHeldName(player.getItemInHand()) + ".");
     }
 
