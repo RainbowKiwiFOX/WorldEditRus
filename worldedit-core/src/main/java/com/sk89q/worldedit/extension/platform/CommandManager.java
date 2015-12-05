@@ -119,27 +119,27 @@ public final class CommandManager {
                         .registerMethods(new ToolCommands(worldEdit))
                         .registerMethods(new UtilityCommands(worldEdit))
                         .group("worldedit", "we")
-                            .describeAs("WorldEdit commands")
+                            .describeAs("Команды WorldEdit")
                             .registerMethods(new WorldEditCommands(worldEdit))
                             .parent()
                         .group("schematic", "schem", "/schematic", "/schem")
-                            .describeAs("Schematic commands for saving/loading areas")
+                            .describeAs("Команды схем для загрузки/сохранения территории")
                             .registerMethods(new SchematicCommands(worldEdit))
                             .parent()
                         .group("snapshot", "snap")
-                            .describeAs("Schematic commands for saving/loading areas")
+                            .describeAs("Команды схем для загрузки/сохранения территории")
                             .registerMethods(new SnapshotCommands(worldEdit))
                             .parent()
                         .group("brush", "br")
-                            .describeAs("Brushing commands")
+                            .describeAs("Команды чистки")
                             .registerMethods(new BrushCommands(worldEdit))
                             .parent()
                         .group("superpickaxe", "pickaxe", "sp")
-                            .describeAs("Super-pickaxe commands")
+                            .describeAs("Команды супер-кирки")
                             .registerMethods(new SuperPickaxeCommands(worldEdit))
                             .parent()
                         .group("tool")
-                            .describeAs("Bind functions to held items")
+                            .describeAs("Привязка событий к определённому предмету")
                             .registerMethods(new ToolCommands(worldEdit))
                             .parent()
                         .graph()
@@ -147,7 +147,7 @@ public final class CommandManager {
     }
 
     void register(Platform platform) {
-        log.log(Level.FINE, "Registering commands with " + platform.getClass().getCanonicalName());
+        log.log(Level.FINE, "Регистрация команд с " + platform.getClass().getCanonicalName());
 
         LocalConfiguration config = platform.getConfiguration();
         boolean logging = config.logCommands;
@@ -161,12 +161,12 @@ public final class CommandManager {
             File file = new File(config.getWorkingDirectory(), path);
             commandLog.setLevel(Level.ALL);
 
-            log.log(Level.INFO, "Logging WorldEdit commands to " + file.getAbsolutePath());
+            log.log(Level.INFO, "Логгирование команд WorldEdit в " + file.getAbsolutePath());
 
             try {
                 dynamicHandler.setHandler(new FileHandler(file.getAbsolutePath(), true));
             } catch (IOException e) {
-                log.log(Level.WARNING, "Could not use command log file " + path + ": " + e.getMessage());
+                log.log(Level.WARNING, "Не удалось использовать команду лог-файла " + path + ": " + e.getMessage());
             }
         }
 
@@ -224,7 +224,7 @@ public final class CommandManager {
         try {
             dispatcher.call(Joiner.on(" ").join(split), locals, new String[0]);
         } catch (CommandPermissionsException e) {
-            actor.printError("You are not permitted to do that. Are you in the right mode?");
+            actor.printError("§4У Вас нет прав для выполнения данной команды.");
         } catch (InvalidUsageException e) {
             if (e.isFullHelpSuggested()) {
                 actor.printRaw(ColorCodeBuilder.asColorCodes(new CommandUsageBox(e.getCommand(), e.getCommandUsed("/", ""), locals)));
@@ -234,21 +234,21 @@ public final class CommandManager {
                 }
             } else {
                 String message = e.getMessage();
-                actor.printError(message != null ? message : "The command was not used properly (no more help available).");
-                actor.printError("Usage: " + e.getSimpleUsageString("/"));
+                actor.printError(message != null ? message : "Неверное использование команды.");
+                actor.printError("Использование: " + e.getSimpleUsageString("/"));
             }
         } catch (WrappedCommandException e) {
             Throwable t = e.getCause();
-            actor.printError("Please report this error: [See console]");
+            actor.printError("Пожалуйста, сообщите об этой ошибке: [Подробности в консоли]");
             actor.printRaw(t.getClass().getName() + ": " + t.getMessage());
-            log.log(Level.SEVERE, "An unexpected error while handling a WorldEdit command", t);
+            log.log(Level.SEVERE, "Произошла ошибка при использовании команды WorldEdit", t);
         } catch (CommandException e) {
             String message = e.getMessage();
             if (message != null) {
                 actor.printError(e.getMessage());
             } else {
-                actor.printError("An unknown error has occurred! Please see console.");
-                log.log(Level.SEVERE, "An unknown error occurred", e);
+                actor.printError("Произошла неизвестная ошибка! Пожалуйста, загляните в консоль.");
+                log.log(Level.SEVERE, "Произошла неизвестная ошибка", e);
             }
         } finally {
             EditSession editSession = locals.get(EditSession.class);

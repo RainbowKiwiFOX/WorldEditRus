@@ -52,7 +52,7 @@ public class ChunkCommands {
     @Command(
         aliases = { "chunkinfo" },
         usage = "",
-        desc = "Get information about the chunk that you are inside",
+        desc = "Информация о чанке на котором вы стоите",
         min = 0,
         max = 0
     )
@@ -67,8 +67,8 @@ public class ChunkCommands {
         String filename = "c." + Integer.toString(chunkX, 36)
                 + "." + Integer.toString(chunkZ, 36) + ".dat";
 
-        player.print("Chunk: " + chunkX + ", " + chunkZ);
-        player.print("Old format: " + folder1 + "/" + folder2 + "/" + filename);
+        player.print("Чанк: " + chunkX + ", " + chunkZ);
+        player.print("Старый формат: " + folder1 + "/" + folder2 + "/" + filename);
         player.print("McRegion: region/" + McRegionChunkStore.getFilename(
                 new Vector2D(chunkX, chunkZ)));
     }
@@ -76,7 +76,7 @@ public class ChunkCommands {
     @Command(
         aliases = { "listchunks" },
         usage = "",
-        desc = "List chunks that your selection includes",
+        desc = "Список чанков в выбранной зоне",
         min = 0,
         max = 0
     )
@@ -92,14 +92,14 @@ public class ChunkCommands {
     @Command(
         aliases = { "delchunks" },
         usage = "",
-        desc = "Delete chunks that your selection includes",
+        desc = "Удалить чанки в выбранной зоне",
         min = 0,
         max = 0
     )
     @CommandPermissions("worldedit.delchunks")
     @Logging(REGION)
     public void deleteChunks(Player player, LocalSession session, EditSession editSession, CommandContext args) throws WorldEditException {
-        player.print("Note that this command does not yet support the mcregion format.");
+        player.print("Примичание: эта команда не поддерживает формат mcregion.");
         LocalConfiguration config = worldEdit.getConfiguration();
 
         Set<Vector2D> chunks = session.getSelection(player.getWorld()).getChunks();

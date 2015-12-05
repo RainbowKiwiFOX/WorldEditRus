@@ -63,13 +63,13 @@ public class GenerationCommands {
 
     @Command(
         aliases = { "/hcyl" },
-        usage = "<pattern> <radius>[,<radius>] [height]",
-        desc = "Generates a hollow cylinder.",
+        usage = "<материал> <радиус>[,<ещё радиус>] [размер]",
+        desc = "Создание полого цилиндра.",
         help =
-            "Generates a hollow cylinder.\n" +
-            "By specifying 2 radii, separated by a comma,\n" +
-            "you can generate elliptical cylinders.\n" +
-            "The 1st radius is north/south, the 2nd radius is east/west.",
+            "Создание полого цилиндра.\n" +
+            "При указании двух радиусов через запятую,\n" +
+            "вы можете создавать эллептические цилиндры.\n" +
+            "Первый радиус север/юг, второй - запад/восток.",
         min = 2,
         max = 3
     )
@@ -81,14 +81,14 @@ public class GenerationCommands {
 
     @Command(
         aliases = { "/cyl" },
-        usage = "<block> <radius>[,<radius>] [height]",
+        usage = "<материал> <радиус>[,<ещё радиус>] [размер]",
         flags = "h",
-        desc = "Generates a cylinder.",
+        desc = "Создание цилиндров.",
         help =
-            "Generates a cylinder.\n" +
-            "By specifying 2 radii, separated by a comma,\n" +
-            "you can generate elliptical cylinders.\n" +
-            "The 1st radius is north/south, the 2nd radius is east/west.",
+            "Создание цилиндров.\n" +
+            "При указании двух радиусов через запятую,\n" +
+            "вы можете создавать эллептические цилиндры.\n" +
+            "Первый радиус север/юг, второй - запад/восток.",
         min = 2,
         max = 3
     )
@@ -108,7 +108,7 @@ public class GenerationCommands {
             break;
 
         default:
-            player.printError("You must either specify 1 or 2 radius values.");
+            player.printError("Вы можете указать 1 или 2 значения радиусов.");
             return;
         }
 
@@ -118,18 +118,18 @@ public class GenerationCommands {
 
         Vector pos = session.getPlacementPosition(player);
         int affected = editSession.makeCylinder(pos, Patterns.wrap(pattern), radiusX, radiusZ, height, !hollow);
-        player.print(affected + " block(s) have been created.");
+        player.print(affected + " блока(ов) было создано.");
     }
 
     @Command(
         aliases = { "/hsphere" },
-        usage = "<block> <radius>[,<radius>,<radius>] [raised?]",
-        desc = "Generates a hollow sphere.",
+        usage = "<материал> <радиус>[,<ещё радиус>,<и ещё радиус>] [рельеф?]",
+        desc = "Создание пустой сферы.",
         help =
-            "Generates a hollow sphere.\n" +
-            "By specifying 3 radii, separated by commas,\n" +
-            "you can generate an ellipsoid. The order of the ellipsoid radii\n" +
-            "is north/south, up/down, east/west.",
+            "Создание пустой сферы.\n" +
+            "При указании трёх радиусов через запятую,\n" +
+            "вы можете создавать эллептические эллипсойды.\n" +
+            "Первый радиус север/юг, второй - верх/низ, третий - запад/восток.",
         min = 2,
         max = 3
     )
@@ -141,14 +141,14 @@ public class GenerationCommands {
 
     @Command(
         aliases = { "/sphere" },
-        usage = "<block> <radius>[,<radius>,<radius>] [raised?]",
+        usage = "<материал> <радиус>[,<ещё радиус>,<и ещё радиус>] [рельеф?]",
         flags = "h",
-        desc = "Generates a filled sphere.",
+        desc = "Создание заполненной сферы.",
         help =
-            "Generates a filled sphere.\n" +
-            "By specifying 3 radii, separated by commas,\n" +
-            "you can generate an ellipsoid. The order of the ellipsoid radii\n" +
-            "is north/south, up/down, east/west.",
+            "Создание пустой сферы.\n" +
+            "При указании трёх радиусов через запятую,\n" +
+            "вы можете создавать эллептические эллипсойды.\n" +
+            "Первый радиус север/юг, второй - верх/низ, третий - запад/восток.",
         min = 2,
         max = 3
     )
@@ -169,7 +169,7 @@ public class GenerationCommands {
             break;
 
         default:
-            player.printError("You must either specify 1 or 3 radius values.");
+            player.printError("Вы можете указать 1 или 3 значения радиусов.");
             return;
         }
 
@@ -184,13 +184,13 @@ public class GenerationCommands {
 
         int affected = editSession.makeSphere(pos, Patterns.wrap(pattern), radiusX, radiusY, radiusZ, !hollow);
         player.findFreePosition();
-        player.print(affected + " block(s) have been created.");
+        player.print(affected + " блока(ов) было создано.");
     }
 
     @Command(
         aliases = { "forestgen" },
-        usage = "[size] [type] [density]",
-        desc = "Generate a forest",
+        usage = "[размер] [тип] [густота]",
+        desc = "Посадка леса",
         min = 0,
         max = 3
     )
@@ -200,12 +200,12 @@ public class GenerationCommands {
     public void forestGen(Player player, LocalSession session, EditSession editSession, @Optional("10") int size, @Optional("tree") TreeType type, @Optional("5") double density) throws WorldEditException {
         density = density / 100;
         int affected = editSession.makeForest(session.getPlacementPosition(player), size, density, new TreeGenerator(type));
-        player.print(affected + " trees created.");
+        player.print(affected + " деревьев было посажено.");
     }
 
     @Command(
         aliases = { "pumpkins" },
-        usage = "[size]",
+        usage = "[размер]",
         desc = "Generate pumpkin patches",
         min = 0,
         max = 1
@@ -214,13 +214,13 @@ public class GenerationCommands {
     @Logging(POSITION)
     public void pumpkins(Player player, LocalSession session, EditSession editSession, @Optional("10") int apothem) throws WorldEditException {
         int affected = editSession.makePumpkinPatches(session.getPlacementPosition(player), apothem);
-        player.print(affected + " pumpkin patches created.");
+        player.print(affected + " тыкв(ы) было посажено.");
     }
 
     @Command(
             aliases = { "/hpyramid" },
-            usage = "<block> <size>",
-            desc = "Generate a hollow pyramid",
+            usage = "<материал> <размер>",
+            desc = "Создание пустой пирамиды",
             min = 2,
             max = 2
     )
@@ -232,9 +232,9 @@ public class GenerationCommands {
 
     @Command(
         aliases = { "/pyramid" },
-        usage = "<block> <size>",
+        usage = "<материал> <размер>",
         flags = "h",
-        desc = "Generate a filled pyramid",
+        desc = "Создание заполненной пирамиды",
         min = 2,
         max = 2
     )
@@ -245,7 +245,7 @@ public class GenerationCommands {
         worldEdit.checkMaxRadius(size);
         int affected = editSession.makePyramid(pos, Patterns.wrap(pattern), size, !hollow);
         player.findFreePosition();
-        player.print(affected + " block(s) have been created.");
+        player.print(affected + " блока(ов) было установлено.");
     }
 
     @Command(

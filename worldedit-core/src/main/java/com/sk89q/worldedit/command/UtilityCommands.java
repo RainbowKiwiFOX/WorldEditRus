@@ -83,8 +83,8 @@ public class UtilityCommands {
 
     @Command(
         aliases = { "/fill" },
-        usage = "<block> <radius> [depth]",
-        desc = "Fill a hole",
+        usage = "<блок> <радиус> [глубина]",
+        desc = "Заполнить отверстия",
         min = 2,
         max = 3
     )
@@ -106,13 +106,13 @@ public class UtilityCommands {
         } else {
             affected = editSession.fillXZ(pos, pattern, radius, depth, false);
         }
-        player.print(affected + " block(s) have been created.");
+        player.print(affected + " блок(а/ов) было заполнено.");
     }
 
     @Command(
         aliases = { "/fillr" },
-        usage = "<block> <radius> [depth]",
-        desc = "Fill a hole recursively",
+        usage = "<блок> <радиус> [глубина]",
+        desc = "Заполнить отверстия рекурсивно",
         min = 2,
         max = 3
     )
@@ -134,13 +134,13 @@ public class UtilityCommands {
         } else {
             affected = editSession.fillXZ(pos, pattern, radius, depth, true);
         }
-        player.print(affected + " block(s) have been created.");
+        player.print(affected + " блок(а/ов) было заполнено.");
     }
 
     @Command(
         aliases = { "/drain" },
-        usage = "<radius>",
-        desc = "Drain a pool",
+        usage = "<радиус>",
+        desc = "Осушить водоём",
         min = 1,
         max = 1
     )
@@ -152,13 +152,13 @@ public class UtilityCommands {
         we.checkMaxRadius(radius);
         int affected = editSession.drainArea(
                 session.getPlacementPosition(player), radius);
-        player.print(affected + " block(s) have been changed.");
+        player.print(affected + " блок(а/ов) было осушено.");
     }
 
     @Command(
         aliases = { "/fixlava", "fixlava" },
-        usage = "<radius>",
-        desc = "Fix lava to be stationary",
+        usage = "<радиус>",
+        desc = "Выровнить лаву (перевести из текущего состояния в стоящее)",
         min = 1,
         max = 1
     )
@@ -170,13 +170,13 @@ public class UtilityCommands {
         we.checkMaxRadius(radius);
         int affected = editSession.fixLiquid(
                 session.getPlacementPosition(player), radius, 10, 11);
-        player.print(affected + " block(s) have been changed.");
+        player.print(affected + " блок(а/ов) было исправлено.");
     }
 
     @Command(
         aliases = { "/fixwater", "fixwater" },
         usage = "<radius>",
-        desc = "Fix water to be stationary",
+        desc = "Выровнить воду (перевести из текущего состояния в стоящее)",
         min = 1,
         max = 1
     )
@@ -188,13 +188,13 @@ public class UtilityCommands {
         we.checkMaxRadius(radius);
         int affected = editSession.fixLiquid(
                 session.getPlacementPosition(player), radius, 8, 9);
-        player.print(affected + " block(s) have been changed.");
+        player.print(affected + " блок(а/ов) было исправлено.");
     }
 
     @Command(
         aliases = { "/removeabove", "removeabove" },
-        usage = "[size] [height]",
-        desc = "Remove blocks above your head.",
+        usage = "[размер] [высота]",
+        desc = "Удалить блоки над головой.",
         min = 0,
         max = 2
     )
@@ -209,13 +209,13 @@ public class UtilityCommands {
 
         int affected = editSession.removeAbove(
                 session.getPlacementPosition(player), size, height);
-        player.print(affected + " block(s) have been removed.");
+        player.print(affected + " блок(а/ов) было удалено.");
     }
 
     @Command(
         aliases = { "/removebelow", "removebelow" },
-        usage = "[size] [height]",
-        desc = "Remove blocks below you.",
+        usage = "[размер] [высота]",
+        desc = "Удалить блоки под собой.",
         min = 0,
         max = 2
     )
@@ -229,13 +229,13 @@ public class UtilityCommands {
         int height = args.argsLength() > 1 ? Math.min((world.getMaxY() + 1), args.getInteger(1) + 2) : (world.getMaxY() + 1);
 
         int affected = editSession.removeBelow(session.getPlacementPosition(player), size, height);
-        player.print(affected + " block(s) have been removed.");
+        player.print(affected + " блок(а/ов) было удалено.");
     }
 
     @Command(
         aliases = { "/removenear", "removenear" },
-        usage = "<block> [size]",
-        desc = "Remove blocks near you.",
+        usage = "<блок> [размер]",
+        desc = "Удалить блоки вокруг себя.",
         min = 1,
         max = 2
     )
@@ -248,13 +248,13 @@ public class UtilityCommands {
         we.checkMaxRadius(size);
 
         int affected = editSession.removeNear(session.getPlacementPosition(player), block.getType(), size);
-        player.print(affected + " block(s) have been removed.");
+        player.print(affected + " блок(а/ов) было удалено.");
     }
 
     @Command(
         aliases = { "/replacenear", "replacenear" },
-        usage = "<size> <from-id> <to-id>",
-        desc = "Replace nearby blocks",
+        usage = "<размер> <блок> <на какой блок>",
+        desc = "Заменить близлежащие блоки",
         flags = "f",
         min = 3,
         max = 3
@@ -285,13 +285,13 @@ public class UtilityCommands {
         } else {
             affected = editSession.replaceBlocks(region, from, to);
         }
-        player.print(affected + " block(s) have been replaced.");
+        player.print(affected + " блок(а/ов) было заменено.");
     }
 
     @Command(
         aliases = { "/snow", "snow" },
-        usage = "[radius]",
-        desc = "Simulates snow",
+        usage = "[радиус]",
+        desc = "Покрыть территорию снегом",
         min = 0,
         max = 1
     )
@@ -302,13 +302,13 @@ public class UtilityCommands {
         double size = args.argsLength() > 0 ? Math.max(1, args.getDouble(0)) : 10;
 
         int affected = editSession.simulateSnow(session.getPlacementPosition(player), size);
-        player.print(affected + " surfaces covered. Let it snow~");
+        player.print(affected + " блоков было покрыто. Снежооок~");
     }
 
     @Command(
         aliases = {"/thaw", "thaw"},
-        usage = "[radius]",
-        desc = "Thaws the area",
+        usage = "[радиус]",
+        desc = "Разморозить территорию",
         min = 0,
         max = 1
     )
@@ -319,13 +319,13 @@ public class UtilityCommands {
         double size = args.argsLength() > 0 ? Math.max(1, args.getDouble(0)) : 10;
 
         int affected = editSession.thaw(session.getPlacementPosition(player), size);
-        player.print(affected + " surfaces thawed.");
+        player.print(affected + " блоков разморожено.");
     }
 
     @Command(
         aliases = { "/green", "green" },
-        usage = "[radius]",
-        desc = "Greens the area",
+        usage = "[радиус]",
+        desc = "Озеленить территорию",
         flags = "f",
         min = 0,
         max = 1
@@ -338,7 +338,7 @@ public class UtilityCommands {
         final boolean onlyNormalDirt = !args.hasFlag('f');
 
         final int affected = editSession.green(session.getPlacementPosition(player), size, onlyNormalDirt);
-        player.print(affected + " surfaces greened.");
+        player.print(affected + " блок(а/ов) было озеленено.");
     }
 
     @Command(
@@ -360,26 +360,26 @@ public class UtilityCommands {
         we.checkMaxRadius(size);
 
         int affected = editSession.removeNear(session.getPlacementPosition(player), 51, size);
-        player.print(affected + " block(s) have been removed.");
+        player.print(affected + " блок(а/ов) было removed.");
     }
 
     @Command(
         aliases = { "butcher" },
-        usage = "[radius]",
+        usage = "[радиус]",
         flags = "plangbtfr",
-        desc = "Kill all or nearby mobs",
+        desc = "Убить всех блоков вокруг",
         help =
             "Kills nearby mobs, based on radius, if none is given uses default in configuration.\n" +
             "Flags:\n" +
-            "  -p also kills pets.\n" +
-            "  -n also kills NPCs.\n" +
-            "  -g also kills Golems.\n" +
-            "  -a also kills animals.\n" +
-            "  -b also kills ambient mobs.\n" +
-            "  -t also kills mobs with name tags.\n" +
-            "  -f compounds all previous flags.\n" +
-            "  -r also destroys armor stands.\n" +
-            "  -l currently does nothing.",
+            "  -p убить всех питомцев.\n" +
+            "  -n убить всех NPC.\n" +
+            "  -g убить всех Големов.\n" +
+            "  -a убить всех животных.\n" +
+            "  -b убить всех окружающих мобов.\n" +
+            "  -t убить всех мобов с именами.\n" +
+            "  -f все вышестоящие флаги.\n" +
+            "  -r уничтожить все стойки для брони.\n" +
+            "  -l в настоящее время ничего не делает.",
         min = 0,
         max = 1
     )
@@ -447,8 +447,8 @@ public class UtilityCommands {
 
     @Command(
         aliases = { "remove", "rem", "rement" },
-        usage = "<type> <radius>",
-        desc = "Remove all entities of a type",
+        usage = "<тип> <радиус>",
+        desc = "Удалить энтити определённого типа",
         min = 2,
         max = 2
     )
@@ -525,8 +525,8 @@ public class UtilityCommands {
 
     @Command(
         aliases = { "/help" },
-        usage = "[<command>]",
-        desc = "Displays help for WorldEdit commands",
+        usage = "[<команда>]",
+        desc = "Показать помощь по командам WorldEdit",
         min = 0,
         max = -1
     )
@@ -603,10 +603,10 @@ public class UtilityCommands {
                     callable = mapping.getCallable();
                 } else {
                     if (isRootLevel) {
-                        actor.printError(String.format("The command '%s' could not be found.", args.getString(i)));
+                        actor.printError(String.format("Команда '%s' не найдена.", args.getString(i)));
                         return;
                     } else {
-                        actor.printError(String.format("The sub-command '%s' under '%s' could not be found.",
+                        actor.printError(String.format("Подкоманда '%s' under '%s' не найдена.",
                                 command, Joiner.on(" ").join(visited)));
                         return;
                     }
@@ -615,7 +615,7 @@ public class UtilityCommands {
                 visited.add(args.getString(i));
                 isRootLevel = false;
             } else {
-                actor.printError(String.format("'%s' has no sub-commands. (Maybe '%s' is for a parameter?)",
+                actor.printError(String.format("'%s' не является подкомандой. (Может быть '%s' это параметр??)",
                         Joiner.on(" ").join(visited), command));
                 return;
             }
@@ -634,18 +634,18 @@ public class UtilityCommands {
             int pageTotal = (int) Math.ceil(aliases.size() / (double) perPage);
 
             // Box
-            CommandListBox box = new CommandListBox(String.format("Help: page %d/%d ", page + 1, pageTotal));
+            CommandListBox box = new CommandListBox(String.format("Помощь: страница %d/%d ", page + 1, pageTotal));
             StyledFragment contents = box.getContents();
             StyledFragment tip = contents.createFragment(Style.GRAY);
 
             if (offset >= aliases.size()) {
-                tip.createFragment(Style.RED).append(String.format("There is no page %d (total number of pages is %d).", page + 1, pageTotal)).newLine();
+                tip.createFragment(Style.RED).append(String.format("Страницы %d не существует (всего %d страниц(ы)).", page + 1, pageTotal)).newLine();
             } else {
                 List<CommandMapping> list = aliases.subList(offset, Math.min(offset + perPage, aliases.size()));
 
-                tip.append("Type ");
-                tip.append(new Code().append("//help ").append("<command> [<page>]"));
-                tip.append(" for more information.").newLine();
+                tip.append("Напишите ");
+                tip.append(new Code().append("//help ").append("<команда> [<страница>]"));
+                tip.append(" для получения дополнительной информации.").newLine();
 
                 // Add each command
                 for (CommandMapping mapping : list) {

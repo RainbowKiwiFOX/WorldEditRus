@@ -173,7 +173,7 @@ public class RegionCommands {
             from = new ExistingBlockMask(editSession);
         }
         int affected = editSession.replaceBlocks(region, from, Patterns.wrap(to));
-        player.print(affected + " бло(а/ов) было заменено.");
+        player.print(affected + " блок(а/ов) было заменено.");
     }
 
     @Command(

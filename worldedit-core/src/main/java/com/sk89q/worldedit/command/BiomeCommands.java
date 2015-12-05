@@ -73,8 +73,8 @@ public class BiomeCommands {
 
     @Command(
         aliases = { "biomelist", "biomels" },
-        usage = "[page]",
-        desc = "Gets all biomes available.",
+        usage = "[страница]",
+        desc = "Показать список доступных биомов.",
         max = 1
     )
     @CommandPermissions("worldedit.biome.list")
@@ -93,7 +93,7 @@ public class BiomeCommands {
         BiomeRegistry biomeRegistry = player.getWorld().getWorldData().getBiomeRegistry();
         List<BaseBiome> biomes = biomeRegistry.getBiomes();
         int totalPages = biomes.size() / 19 + 1;
-        player.print("Available Biomes (page " + page + "/" + totalPages + ") :");
+        player.print("Доступные биомы (страница " + page + "/" + totalPages + ") :");
         for (BaseBiome biome : biomes) {
             if (offset > 0) {
                 offset--;
@@ -114,12 +114,12 @@ public class BiomeCommands {
     @Command(
         aliases = { "biomeinfo" },
         flags = "pt",
-        desc = "Get the biome of the targeted block.",
+        desc = "Показать информацию о биоме в выбранной территории.",
         help =
-            "Get the biome of the block.\n" +
-            "By default use all the blocks contained in your selection.\n" +
-            "-t use the block you are looking at.\n" +
-            "-p use the block you are currently in",
+            "Показать информацию о биоме на территории выбранной вами топором.\n" +
+            "По умолчанию показывается информация о бимомах, которые вы выбрали.\n" +
+            "-t показать биом, на который вы смотрите.\n" +
+            "-p показать биом блока, на котором вы стоите",
         max = 0
     )
     @CommandPermissions("worldedit.biome.info")
@@ -131,7 +131,7 @@ public class BiomeCommands {
         if (args.hasFlag('t')) {
             Vector blockPosition = player.getBlockTrace(300);
             if (blockPosition == null) {
-                player.printError("No block in sight!");
+                player.printError("Невозможно определить блок на который вы смотрите!");
                 return;
             }
 
@@ -174,13 +174,13 @@ public class BiomeCommands {
 
     @Command(
             aliases = { "/setbiome" },
-            usage = "<biome>",
+            usage = "<биом>",
             flags = "p",
-            desc = "Sets the biome of the player's current block or region.",
+            desc = "Установить тип бома в выделенной вами территории.",
             help =
-                    "Set the biome of the region.\n" +
-                    "By default use all the blocks contained in your selection.\n" +
-                    "-p use the block you are currently in"
+                    "Установить тип бома в выделенной вами территории.\n" +
+                    "По умолчанию устанавливается на блоках, которые вы выделили топором.\n" +
+                    "-p на стоящем под вами блоком"
     )
     @Logging(REGION)
     @CommandPermissions("worldedit.biome.set")
@@ -203,7 +203,7 @@ public class BiomeCommands {
         FlatRegionVisitor visitor = new FlatRegionVisitor(Regions.asFlatRegion(region), replace);
         Operations.completeLegacy(visitor);
 
-        player.print("Biomes were changed in " + visitor.getAffected() + " columns. You may have to rejoin your game (or close and reopen your world) to see a change.");
+        player.print("Биом был измененён на площади " + visitor.getAffected() + " блоков. Чтобы увидеть изменения, перезайдите в игру ли покиньте это место, а потом вернитесь.");
     }
 
 }

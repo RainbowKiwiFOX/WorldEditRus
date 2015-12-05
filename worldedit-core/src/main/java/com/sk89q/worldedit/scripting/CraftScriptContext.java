@@ -138,7 +138,7 @@ public class CraftScriptContext extends CraftScriptEnvironment {
     public void checkArgs(int min, int max, String usage)
             throws InsufficientArgumentsException {
         if (args.length <= min || (max != -1 && args.length - 1 > max)) {
-            throw new InsufficientArgumentsException("Usage: " + usage);
+            throw new InsufficientArgumentsException("Использование: " + usage);
         }
     }
 

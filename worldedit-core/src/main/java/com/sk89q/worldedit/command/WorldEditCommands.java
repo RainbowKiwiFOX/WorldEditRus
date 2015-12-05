@@ -47,22 +47,22 @@ public class WorldEditCommands {
     @Command(
         aliases = { "version", "ver" },
         usage = "",
-        desc = "Get WorldEdit version",
+        desc = "Узнать версию WorldEdit",
         min = 0,
         max = 0
     )
     public void version(Actor actor) throws WorldEditException {
-        actor.print("WorldEdit version " + WorldEdit.getVersion());
+        actor.print("WorldEdit версия " + WorldEdit.getVersion());
         actor.print("https://github.com/sk89q/worldedit/");
 
         PlatformManager pm = we.getPlatformManager();
 
-        actor.printDebug("----------- Platforms -----------");
+        actor.printDebug("----------- Платформы -----------");
         for (Platform platform : pm.getPlatforms()) {
             actor.printDebug(String.format("* %s (%s)", platform.getPlatformName(), platform.getPlatformVersion()));
         }
 
-        actor.printDebug("----------- Capabilities -----------");
+        actor.printDebug("---------- Возможности ----------");
         for (Capability capability : Capability.values()) {
             Platform platform = pm.queryCapability(capability);
             actor.printDebug(String.format("%s: %s", capability.name(), platform != null ? platform.getPlatformName() : "NONE"));
@@ -72,7 +72,7 @@ public class WorldEditCommands {
     @Command(
         aliases = { "reload" },
         usage = "",
-        desc = "Reload configuration",
+        desc = "Перезагрузка конфигурации",
         min = 0,
         max = 0
     )
@@ -80,7 +80,7 @@ public class WorldEditCommands {
     public void reload(Actor actor) throws WorldEditException {
         we.getServer().reload();
         we.getEventBus().post(new ConfigurationLoadEvent(we.getPlatformManager().queryCapability(Capability.CONFIGURATION).getConfiguration()));
-        actor.print("Configuration reloaded!");
+        actor.print("Конфигурация перезагружена!");
     }
 
     @Command(
@@ -98,22 +98,22 @@ public class WorldEditCommands {
     @Command(
         aliases = { "tz" },
         usage = "[timezone]",
-        desc = "Set your timezone for snapshots",
+        desc = "Установить часовой пояс снимков",
         min = 1,
         max = 1
     )
     public void tz(Player player, LocalSession session, EditSession editSession, CommandContext args) throws WorldEditException {
         TimeZone tz = TimeZone.getTimeZone(args.getString(0));
         session.setTimezone(tz);
-        player.print("Timezone set for this session to: " + tz.getDisplayName());
-        player.print("The current time in that timezone is: "
+        player.print("Часовой пояс этой сессии установлен: " + tz.getDisplayName());
+        player.print("Текущее время в этом часовом поясе: "
                 + dateFormat.format(Calendar.getInstance(tz).getTime()));
     }
 
     @Command(
         aliases = { "help" },
-        usage = "[<command>]",
-            desc = "Displays help for WorldEdit commands",
+        usage = "[<команда>]",
+            desc = "Показать помощь WorldEdit",
         min = 0,
         max = -1
     )

@@ -88,10 +88,10 @@ public class CommandUsageBox extends StyledFragment {
         StyledFragment contents = box.getContents();
 
         if (description.getUsage() != null) {
-            contents.append(new Label().append("Usage: "));
+            contents.append(new Label().append("Использование "));
             contents.append(description.getUsage());
         } else {
-            contents.append(new Subtle().append("Usage information is not available."));
+            contents.append(new Subtle().append("Информация о использовании не найдена."));
         }
 
         contents.newLine();

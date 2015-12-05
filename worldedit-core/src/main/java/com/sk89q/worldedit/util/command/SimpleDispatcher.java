@@ -112,7 +112,7 @@ public class SimpleDispatcher implements Dispatcher {
         Set<String> aliases = getPrimaryAliases();
 
         if (aliases.isEmpty()) {
-            throw new InvalidUsageException("This command has no sub-commands.", this);
+            throw new InvalidUsageException("Эта команда не является подкомандой.", this);
         } else if (split.length > 0) {
             String subCommand = split[0];
             String subArguments = Joiner.on(" ").join(Arrays.copyOfRange(split, 1, split.length));
@@ -135,7 +135,7 @@ public class SimpleDispatcher implements Dispatcher {
 
         }
 
-        throw new InvalidUsageException("Please choose a sub-command.", this, true);
+        throw new InvalidUsageException("Пожалуйста, выберите подкоманду.", this, true);
     }
 
     @Override

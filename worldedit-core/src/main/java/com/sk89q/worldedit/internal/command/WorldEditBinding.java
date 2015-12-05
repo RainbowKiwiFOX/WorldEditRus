@@ -283,7 +283,7 @@ public class WorldEditBinding extends BindingHelper {
                 return type;
             } else {
                 throw new ParameterException(
-                        String.format("Can't recognize tree type '%s' -- choose from: %s", input, Arrays.toString(TreeType.values())));
+                        String.format("Не удалось найти тип дерева '%s' -- список доступных деревьев: %s", input, Arrays.toString(TreeType.values())));
             }
         } else {
             return TreeType.TREE;
@@ -324,12 +324,11 @@ public class WorldEditBinding extends BindingHelper {
                 return biome;
             } else {
                 throw new ParameterException(
-                        String.format("Can't recognize biome type '%s' -- use /biomelist to list available types", input));
+                        String.format("Не удалось найти тип биома '%s' -- используйте /biomelist для просмотра списка биомов.", input));
             }
         } else {
             throw new ParameterException(
-                    "This command takes a 'default' biome if one is not set, except there is no particular " +
-                            "biome that should be 'default', so the command should not be taking a default biome");
+                    "Эта команда устанавливает биом по умолчанию если в команде не был указан биом.");
         }
     }
 

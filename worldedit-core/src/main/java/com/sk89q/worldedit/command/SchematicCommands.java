@@ -112,7 +112,7 @@ public class SchematicCommands {
             session.setClipboard(new ClipboardHolder(clipboard, worldData));
 
             log.info(player.getName() + " загрузил схему " + f.getCanonicalPath());
-            player.print("—хема '" + filename + "' загружна. ”становите еЄ, использу€ //paste");
+            player.print("—хема '" + filename + "' загружена. ”становите еЄ, использу€ //paste.");
         } catch (IOException e) {
             player.printError("—хема не может быть прочитана или отсутствует: " + e.getMessage());
             log.log(Level.WARNING, "ќшибка записи схемы в буфер обмена.", e);
