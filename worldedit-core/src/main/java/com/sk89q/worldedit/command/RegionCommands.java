@@ -78,6 +78,7 @@ public class RegionCommands {
     }
 
     @Command(
+<<<<<<< HEAD
         aliases = { "/set" },
         usage = "<ID блока>",
         desc = "Заполнить выделенную территирию определённым блоком",
@@ -92,6 +93,8 @@ public class RegionCommands {
     }
 
     @Command(
+=======
+>>>>>>> c6b477297d4d6a2cd7aa0882c346241d5a68e2c7
             aliases = { "/line" },
             usage = "<ID блока> [thickness]",
             desc = "Draws a line segment between cuboid selection corners",
