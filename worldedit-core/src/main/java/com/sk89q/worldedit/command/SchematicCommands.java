@@ -249,58 +249,35 @@ public class SchematicCommands {
 
     @Command(
             aliases = {"list", "all", "ls"},
-<<<<<<< HEAD
-            desc = "Список сохранёных схем",
-            max = 0,
-            flags = "dn",
-            help = "Список сохранёных схем\n" +
-                    " -d сортировка по дате, старые сверху\n" +
-                    " -n сортировка по дате, новые сверху\n"
-=======
-            desc = "List saved schematics",
+            desc = "Список сохранённых схем",
             min = 0,
             max = 1,
             flags = "dnp",
-            help = "List all schematics in the schematics directory\n" +
-                    " -d sorts by date, oldest first\n" +
-                    " -n sorts by date, newest first\n" +
-                    " -p <page> prints the requested page\n"
->>>>>>> c6b477297d4d6a2cd7aa0882c346241d5a68e2c7
+            help = "Просмотр списка всех сохранённых схем\n" +
+                    " -d сортировка по дате, старые сверхуt\n" +
+                    " -n сортировка по дате, новые сверху\n" +
+                    " -p <номер> переход на страницу\n"
     )
     @CommandPermissions("worldedit.schematic.list")
     public void list(Actor actor, CommandContext args, @Switch('p') @Optional("1") int page) throws WorldEditException {
         File dir = worldEdit.getWorkingDirectoryFile(worldEdit.getConfiguration().saveDir);
-<<<<<<< HEAD
-        File[] files = dir.listFiles(new FileFilter(){
-            @Override
-            public boolean accept(File file) {
-                // sort out directories from the schematic list
-                // if WE supports sub-directories in the future,
-                // this will have to be changed
-                return file.isFile();
-            }
-        });
-        if (files == null) {
-            throw new FilenameResolutionException(dir.getPath(), "Папка схем не найдена.");
-=======
         List<File> fileList = allFiles(dir);
         File[] files = new File[fileList.size()];
         fileList.toArray(files);
 
         if (files.length == 0) {
-            actor.printError("No schematics found.");
+            actor.printError("Схемы не найдены.");
             return;
         }
 
         int pageCount = files.length / SCHEMATICS_PER_PAGE + 1;
         if (page < 1) {
-            actor.printError("Page must be at least 1");
+            actor.printError("Минимальное количество страниц - 1");
             return;
         }
         if (page > pageCount) {
-            actor.printError("Page must be less than " + (pageCount + 1));
+            actor.printError("Страниц не может быть больше " + (pageCount + 1));
             return;
->>>>>>> c6b477297d4d6a2cd7aa0882c346241d5a68e2c7
         }
 
         final int sortType = args.hasFlag('d') ? -1 : args.hasFlag('n') ? 1 : 0;
@@ -325,16 +302,10 @@ public class SchematicCommands {
             }
         });
 
-<<<<<<< HEAD
-        actor.print("Доступные схемы (Название (формат)):");
-        actor.print(listFiles("", files));
-    }
-=======
         List<String> schematics = listFiles(worldEdit.getConfiguration().saveDir, files);
         int offset = (page - 1) * SCHEMATICS_PER_PAGE;
->>>>>>> c6b477297d4d6a2cd7aa0882c346241d5a68e2c7
 
-        actor.print("Available schematics (Filename: Format) [" + page + "/" + pageCount + "]:");
+        actor.print("Доступные схемы (Название: Формат) [" + page + "/" + pageCount + "]:");
         StringBuilder build = new StringBuilder();
         int limit = Math.min(offset + SCHEMATICS_PER_PAGE, schematics.size());
         for (int i = offset; i < limit;) {
@@ -371,14 +342,10 @@ public class SchematicCommands {
 
             build.append("\u00a72");
             ClipboardFormat format = ClipboardFormat.findByFile(file);
-<<<<<<< HEAD
-            build.append(prefix).append(file.getName()).append(": ").append(format == null ? "Неизвестно" : format.name());
-=======
             boolean inRoot = file.getParentFile().getName().equals(prefix);
             build.append(inRoot ? file.getName() : file.getPath().split(Pattern.quote(prefix + File.separator))[1])
-                    .append(": ").append(format == null ? "Unknown" : format.name());
+                    .append(": ").append(format == null ? "Неизвестный формат файла" : format.name());
             result.add(build.toString());
->>>>>>> c6b477297d4d6a2cd7aa0882c346241d5a68e2c7
         }
         return result;
     }

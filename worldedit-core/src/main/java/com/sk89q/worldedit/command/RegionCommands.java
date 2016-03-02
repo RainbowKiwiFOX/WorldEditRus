@@ -78,23 +78,6 @@ public class RegionCommands {
     }
 
     @Command(
-<<<<<<< HEAD
-        aliases = { "/set" },
-        usage = "<ID блока>",
-        desc = "Заполнить выделенную территирию определённым блоком",
-        min = 1,
-        max = 1
-    )
-    @CommandPermissions("worldedit.region.set")
-    @Logging(REGION)
-    public void set(Player player, LocalSession session, EditSession editSession, Pattern pattern) throws WorldEditException {
-        int affected = editSession.setBlocks(session.getSelection(player.getWorld()), Patterns.wrap(pattern));
-        player.print(affected + " блок(а/ов) было установлено.");
-    }
-
-    @Command(
-=======
->>>>>>> c6b477297d4d6a2cd7aa0882c346241d5a68e2c7
             aliases = { "/line" },
             usage = "<ID блока> [thickness]",
             desc = "Draws a line segment between cuboid selection corners",
